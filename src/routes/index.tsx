@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Camera, Film, Globe2 } from "lucide-react";
+import { Camera, Film, Globe2 } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { thumbUrl, trips } from "@/data/site";
 
@@ -16,7 +16,6 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const featured = trips.slice(0, 3);
   return (
     <SiteLayout>
       <section className="relative flex min-h-screen items-end overflow-hidden">
@@ -30,22 +29,14 @@ function Home() {
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
             Fotos, vídeos y rincones del mundo que hemos ido recorriendo, poco a poco.
           </p>
-          <Link to="/viajes" className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground shadow-glow transition-transform hover:-translate-y-0.5">
-            Ver los viajes <ArrowRight className="h-4 w-4" />
-          </Link>
         </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-5 py-20">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <p className="eyebrow">Últimos álbumes</p>
-            <h2 className="mt-2 text-3xl text-sand sm:text-4xl">Destinos</h2>
-          </div>
-          <Link to="/viajes" className="text-sm text-primary hover:underline">Todos los viajes →</Link>
-        </div>
-        <div className="mt-8 grid gap-5 sm:grid-cols-3">
-          {featured.map((t) => (
+        <p className="eyebrow">Destinos</p>
+        <h2 className="mt-2 text-3xl text-sand sm:text-4xl">Todos los viajes</h2>
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {trips.map((t) => (
             <Link key={t.slug} to="/viajes/$slug" params={{ slug: t.slug }} className="group relative aspect-[4/5] overflow-hidden rounded-xl">
               <img src={thumbUrl(t.slug, 2)} alt={t.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
               <div className="absolute inset-0 bg-card-fade" />

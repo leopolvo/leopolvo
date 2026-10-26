@@ -10,33 +10,92 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContactoRouteImport } from './routes/contacto'
+import { Route as VideosRouteImport } from './routes/videos'
+import { Route as Vistas360RouteImport } from './routes/vistas-360'
+import { Route as ViajesIndexRouteImport } from './routes/viajes.index'
+import { Route as ViajesSlugRouteImport } from './routes/viajes.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactoRoute = ContactoRouteImport.update({
+  id: '/contacto',
+  path: '/contacto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VideosRoute = VideosRouteImport.update({
+  id: '/videos',
+  path: '/videos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Vistas360Route = Vistas360RouteImport.update({
+  id: '/vistas-360',
+  path: '/vistas-360',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ViajesIndexRoute = ViajesIndexRouteImport.update({
+  id: '/viajes/',
+  path: '/viajes/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ViajesSlugRoute = ViajesSlugRouteImport.update({
+  id: '/viajes/$slug',
+  path: '/viajes/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contacto': typeof ContactoRoute
+  '/videos': typeof VideosRoute
+  '/vistas-360': typeof Vistas360Route
+  '/viajes/$slug': typeof ViajesSlugRoute
+  '/viajes/': typeof ViajesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contacto': typeof ContactoRoute
+  '/videos': typeof VideosRoute
+  '/vistas-360': typeof Vistas360Route
+  '/viajes/$slug': typeof ViajesSlugRoute
+  '/viajes': typeof ViajesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contacto': typeof ContactoRoute
+  '/videos': typeof VideosRoute
+  '/vistas-360': typeof Vistas360Route
+  '/viajes/$slug': typeof ViajesSlugRoute
+  '/viajes/': typeof ViajesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/contacto' | '/videos' | '/vistas-360' | '/viajes/$slug' | '/viajes/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    '/' | '/contacto' | '/videos' | '/vistas-360' | '/viajes/$slug' | '/viajes'
+  id:
+    | '__root__'
+    | '/'
+    | '/contacto'
+    | '/videos'
+    | '/vistas-360'
+    | '/viajes/$slug'
+    | '/viajes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactoRoute: typeof ContactoRoute
+  VideosRoute: typeof VideosRoute
+  Vistas360Route: typeof Vistas360Route
+  ViajesSlugRoute: typeof ViajesSlugRoute
+  ViajesIndexRoute: typeof ViajesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +107,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contacto': {
+      id: '/contacto'
+      path: '/contacto'
+      fullPath: '/contacto'
+      preLoaderRoute: typeof ContactoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/videos': {
+      id: '/videos'
+      path: '/videos'
+      fullPath: '/videos'
+      preLoaderRoute: typeof VideosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vistas-360': {
+      id: '/vistas-360'
+      path: '/vistas-360'
+      fullPath: '/vistas-360'
+      preLoaderRoute: typeof Vistas360RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/viajes/': {
+      id: '/viajes/'
+      path: '/viajes'
+      fullPath: '/viajes/'
+      preLoaderRoute: typeof ViajesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/viajes/$slug': {
+      id: '/viajes/$slug'
+      path: '/viajes/$slug'
+      fullPath: '/viajes/$slug'
+      preLoaderRoute: typeof ViajesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactoRoute: ContactoRoute,
+  VideosRoute: VideosRoute,
+  Vistas360Route: Vistas360Route,
+  ViajesSlugRoute: ViajesSlugRoute,
+  ViajesIndexRoute: ViajesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

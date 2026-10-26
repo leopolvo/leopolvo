@@ -6,10 +6,22 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+// Every page is prerendered to plain HTML so the site can be hosted statically (GitHub Pages).
+const tripSlugs = ["filipinas", "tailandia", "argentina", "indonesia", "tallin", "costa-rica", "algarve"];
+
 export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
+    pages: [
+      { path: "/" },
+      { path: "/viajes" },
+      { path: "/videos" },
+      { path: "/vistas-360" },
+      { path: "/contacto" },
+      ...tripSlugs.map((s) => ({ path: `/viajes/${s}` })),
+    ],
+    prerender: { enabled: true, autoStaticPathsDiscovery: false },
   },
 });

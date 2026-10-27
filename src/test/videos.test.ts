@@ -14,6 +14,6 @@ test("las fotos JPG extra se añaden al final del álbum y pueden ser portada", 
   const t = { slug: "x", title: "", places: "", date: "", photos: 2, extra: ["IMG 1.jpg"], cover: "IMG 1.jpg" };
   const p = tripPhotos(t);
   expect(p).toHaveLength(3);
-  expect(p[2].full).toBe("/media/x/IMG%201.jpg");
+  expect(p[2]?.full).toBe("/media/x/IMG%201.jpg");
   expect(coverUrl(t)).toBe("/media/x/IMG%201.jpg");
 });

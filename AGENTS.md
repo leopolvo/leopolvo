@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep travel-video entries in the shared site data with YouTube IDs and URLs; the videos page embeds them and provides direct links without requiring a server.

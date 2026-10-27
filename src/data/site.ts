@@ -21,12 +21,13 @@ export const photoUrl = (slug: string, i: number) => `/media/${slug}/${pad(i)}.w
 export const thumbUrl = (slug: string, i: number) => `/media/${slug}/${pad(i)}-t.webp`;
 
 export const videos = [
-  ["img_0056", "Qué peste"], ["img_0214", "De mayor"], ["img_0232", "Nominación"],
-  ["img_0299", "Camello"], ["img_0351", "A tope"], ["img_0454", "Pastel"],
-  ["img_0458", "Bragas"], ["img_0482", "Máquinas"], ["img_0558", "4 chistes"],
-  ["img_0559", "Gitano"], ["img_0562", "Burros"], ["img_0570", "Ritmo"],
-  ["img_0602", "Cigüeña"], ["img_0607", "Pileta"], ["img_0614", "Trompazo"],
-].map(([id, title]) => ({ id, title, src: `/media/videos/${id}.mp4`, poster: `/media/videos/${id}.jpg` }));
+  {
+    id: "rWAKNNV-cXM",
+    title: "Ho Chi Minh, Vietnam",
+    date: "Diciembre 2019",
+    url: "https://www.youtube.com/watch?v=rWAKNNV-cXM",
+  },
+];
 
 export const panoramas = [
   { title: "Cartagena de Indias", place: "Colombia", panoid: "cRKzq0Ta1HMAAAQYN3SSIQ" },

@@ -4,10 +4,12 @@ export type Trip = {
   places: string;
   date: string;
   photos: number;
+  /** Foto de portada: un número de la galería (ej. 7) o "portada" para public/media/<slug>/portada-t.webp */
+  cover?: number | "portada";
 };
 
 export const trips: Trip[] = [
-  { slug: "filipinas", title: "Filipinas", places: "El Nido, Palawan y sus islas", date: "Diciembre 2014 – Enero 2015", photos: 23 },
+  { slug: "filipinas", title: "Filipinas", places: "El Nido, Palawan y sus islas", date: "Diciembre 2014 – Enero 2015", photos: 23, cover: "portada" },
   { slug: "tailandia", title: "Tailandia", places: "Bangkok, Krabi y las islas del sur", date: "Diciembre 2013 – Enero 2014", photos: 19 },
   { slug: "argentina", title: "Patagonia e Isla de Pascua", places: "Perito Moreno, Ushuaia, Isla de Pascua", date: "Diciembre 2012", photos: 21 },
   { slug: "indonesia", title: "Singapur, Bali y Komodo", places: "Singapur, Bali, Nusa Lembongan, Komodo, Dubái", date: "Agosto 2012", photos: 22 },
@@ -38,3 +40,6 @@ export const social = {
   youtube: "https://www.youtube.com/channel/UCyuzr-uNTks--hHQPsLBrUw",
   instagram: "https://instagram.com/leopolvo2/",
 };
+
+export const coverUrl = (t: Trip) =>
+  t.cover === "portada" ? `/media/${t.slug}/portada-t.webp` : thumbUrl(t.slug, t.cover ?? 1);

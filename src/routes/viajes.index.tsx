@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHeader, SiteLayout } from "@/components/SiteLayout";
-import { thumbUrl, trips } from "@/data/site";
+import { coverUrl, trips } from "@/data/site";
 
 export const Route = createFileRoute("/viajes/")({
   head: () => ({
@@ -22,7 +22,7 @@ function Trips() {
         {trips.map((t) => (
           <Link key={t.slug} to="/viajes/$slug" params={{ slug: t.slug }} className="group overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary">
             <div className="aspect-[4/3] overflow-hidden">
-              <img src={thumbUrl(t.slug, 1)} alt={t.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <img src={coverUrl(t)} alt={t.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </div>
             <div className="p-5">
               <p className="text-xs text-primary">{t.date}</p>

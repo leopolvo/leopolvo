@@ -10,6 +10,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "La web de una pareja enamorada de los viajes: álbumes de fotos, vídeos y vistas 360." },
       { property: "og:title", content: "leopolvo · Viajes, fotos y vídeos" },
       { property: "og:description", content: "Álbumes de viajes por Filipinas, Tailandia, Patagonia, Costa Rica y más." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Home,
@@ -35,7 +37,7 @@ function Home() {
       <section className="mx-auto grid max-w-6xl gap-5 px-5 pb-24 sm:grid-cols-3">
         {[
           { to: "/viajes", icon: Camera, title: "Viajes", text: `${trips.length} álbumes de fotos` },
-          { to: "/videos", icon: Film, title: "Vídeos chorras", text: "Momentos para reírse" },
+          { to: "/videos", icon: Film, title: "Vídeos de viajes", text: "Recuerdos de nuestros viajes" },
           { to: "/vistas-360", icon: Globe2, title: "Vistas 360", text: "Explora los lugares" },
         ].map(({ to, icon: Icon, title, text }) => (
           <Link key={to} to={to} className="rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary">

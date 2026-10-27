@@ -5,7 +5,9 @@ export type Trip = {
   date: string;
   photos: number;
   /** Foto de portada: un número de la galería (ej. 7) o "portada" para public/media/<slug>/portada-t.webp */
-  cover?: number | "portada";
+  cover?: number | "portada" | string;
+  /** Fotos extra tal cual salen del móvil (JPG, PNG...), con su nombre original, subidas a public/media/<slug>/ */
+  extra?: string[];
 };
 
 export const trips: Trip[] = [
@@ -41,5 +43,19 @@ export const social = {
   instagram: "https://instagram.com/leopolvo2/",
 };
 
-export const coverUrl = (t: Trip) =>
-  t.cover === "portada" ? `/media/${t.slug}/portada-t.webp` : thumbUrl(t.slug, t.cover ?? 1);
+export type Photo = { thumb: string; full: string };
+
+/** Todas las fotos de un viaje: primero las numeradas (WebP) y luego las extra (JPG u otros formatos). */
+export const tripPhotos = (t: Trip): Photo[] => [
+  ...Array.from({ length: t.photos }, (_, k) => ({ thumb: thumbUrl(t.slug, k + 1), full: photoUrl(t.slug, k + 1) })),
+  ...(t.extra ?? []).map((f) => {
+    const url = `/media/${t.slug}/${encodeURIComponent(f)}`;
+    return { thumb: url, full: url };
+  }),
+];
+
+export const coverUrl = (t: Trip) => {
+  if (t.cover === "portada") return `/media/${t.slug}/portada-t.webp`;
+  if (typeof t.cover === "string") return `/media/${t.slug}/${encodeURIComponent(t.cover)}`;
+  return thumbUrl(t.slug, t.cover ?? 1);
+};

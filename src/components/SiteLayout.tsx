@@ -10,7 +10,13 @@ const nav = [
   { to: "/contacto", label: "Contacto" },
 ] as const;
 
-export function SiteLayout({ children }: { children: ReactNode }) {
+export function SiteLayout({
+  children,
+  showNav = true,
+}: {
+  children: ReactNode;
+  showNav?: boolean;
+}) {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="fixed inset-x-0 top-0 z-40 border-b border-border/40 bg-background/70 backdrop-blur-md">
@@ -18,18 +24,20 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           <Link to="/" className="font-display text-2xl italic text-sand">
             leopolvo
           </Link>
-          <nav className="flex flex-wrap justify-end gap-x-5 gap-y-1 text-sm">
-            {nav.map((n) => (
-              <Link
-                key={n.to}
-                to={n.to}
-                className="text-muted-foreground transition-colors hover:text-primary"
-                activeProps={{ className: "text-primary" }}
-              >
-                {n.label}
-              </Link>
-            ))}
-          </nav>
+          {showNav && (
+            <nav className="flex flex-wrap justify-end gap-x-5 gap-y-1 text-sm">
+              {nav.map((n) => (
+                <Link
+                  key={n.to}
+                  to={n.to}
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                  activeProps={{ className: "text-primary" }}
+                >
+                  {n.label}
+                </Link>
+              ))}
+            </nav>
+          )}
         </div>
       </header>
       <main>{children}</main>

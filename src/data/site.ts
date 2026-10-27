@@ -40,3 +40,6 @@ export const social = {
   youtube: "https://www.youtube.com/channel/UCyuzr-uNTks--hHQPsLBrUw",
   instagram: "https://instagram.com/leopolvo2/",
 };
+
+export const coverUrl = (t: Trip) =>
+  t.cover === "portada" ? `/media/${t.slug}/portada-t.webp` : thumbUrl(t.slug, t.cover ?? 1);

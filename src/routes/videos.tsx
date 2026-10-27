@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, Youtube } from "lucide-react";
+import { ArrowUpRight, Play, Youtube } from "lucide-react";
+import videoPoster from "@/assets/ho-chi-minh-youtube.jpg.asset.json";
 import { PageHeader, SiteLayout } from "@/components/SiteLayout";
 import { videos } from "@/data/site";
 
@@ -24,15 +25,12 @@ function Videos() {
       <section aria-label="Vídeos de viajes" className="mx-auto grid max-w-6xl gap-6 px-5 pb-24 md:grid-cols-2">
         {videos.map((v) => (
           <article key={v.id} className="overflow-hidden rounded-lg border border-border bg-card">
-            <iframe
-              src={`https://www.youtube-nocookie.com/embed/${v.id}`}
-              title={`${v.title} · ${v.date}`}
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              referrerPolicy="strict-origin-when-cross-origin"
-              className="aspect-video w-full border-0"
-            />
+            <a href={v.url} target="_blank" rel="noopener noreferrer" aria-label={`Ver ${v.title} en YouTube`} className="group relative block aspect-video overflow-hidden">
+              <img src={videoPoster.url} alt={v.title} className="h-full w-full object-cover" />
+              <span className="absolute inset-0 flex items-center justify-center">
+                <span className="rounded-full bg-primary p-4 text-primary-foreground shadow-glow transition-transform group-hover:scale-110"><Play className="h-6 w-6" /></span>
+              </span>
+            </a>
             <div className="p-5">
               <h2 className="font-display text-2xl text-sand">{v.title}</h2>
               <p className="mt-1 text-sm text-muted-foreground">{v.date}</p>

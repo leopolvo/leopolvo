@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { PageHeader, SiteLayout } from "@/components/SiteLayout";
-import { photoUrl, thumbUrl, trips } from "@/data/site";
+import { tripPhotos, trips } from "@/data/site";
 
 export const Route = createFileRoute("/viajes/$slug")({
   loader: ({ params }) => {
@@ -26,7 +26,8 @@ export const Route = createFileRoute("/viajes/$slug")({
 function TripPage() {
   const trip = Route.useLoaderData();
   const [open, setOpen] = useState<number | null>(null);
-  const n = trip.photos;
+  const photos = tripPhotos(trip);
+  const n = photos.length;
   const go = useCallback((d: number) => setOpen((o) => (o === null ? o : ((o - 1 + d + n) % n) + 1)), [n]);
 
   useEffect(() => {
@@ -47,7 +48,7 @@ function TripPage() {
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
           {Array.from({ length: n }, (_, i) => i + 1).map((i) => (
             <button key={i} onClick={() => setOpen(i)} className="group aspect-square overflow-hidden rounded-lg">
-              <img src={thumbUrl(trip.slug, i)} alt={`${trip.title}, foto ${i}`} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              <img src={photos[i - 1].thumb} alt={`${trip.title}, foto ${i}`} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
             </button>
           ))}
         </div>
@@ -56,7 +57,7 @@ function TripPage() {
 
       {open !== null && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/95 backdrop-blur" onClick={() => setOpen(null)}>
-          <img src={photoUrl(trip.slug, open)} alt={`${trip.title}, foto ${open}`} className="max-h-[88vh] max-w-[92vw] rounded-lg object-contain" onClick={(e) => e.stopPropagation()} />
+          <img src={photos[open - 1].full} alt={`${trip.title}, foto ${open}`} className="max-h-[88vh] max-w-[92vw] rounded-lg object-contain" onClick={(e) => e.stopPropagation()} />
           <button aria-label="Cerrar" className="absolute right-5 top-5 rounded-full bg-secondary p-2 text-foreground" onClick={() => setOpen(null)}><X className="h-5 w-5" /></button>
           <button aria-label="Anterior" className="absolute left-3 rounded-full bg-secondary p-3 text-foreground" onClick={(e) => { e.stopPropagation(); go(-1); }}><ChevronLeft className="h-5 w-5" /></button>
           <button aria-label="Siguiente" className="absolute right-3 rounded-full bg-secondary p-3 text-foreground" onClick={(e) => { e.stopPropagation(); go(1); }}><ChevronRight className="h-5 w-5" /></button>

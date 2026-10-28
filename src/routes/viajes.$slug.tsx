@@ -17,6 +17,8 @@ export const Route = createFileRoute("/viajes/$slug")({
           { name: "description", content: `Fotos de nuestro viaje: ${loaderData.places} (${loaderData.date}).` },
           { property: "og:title", content: `${loaderData.title} · leopolvo` },
           { property: "og:description", content: `Fotos de nuestro viaje: ${loaderData.places}.` },
+          { property: "og:type", content: "website" },
+          { name: "twitter:card", content: "summary_large_image" },
         ]
       : [{ title: "Viaje no encontrado · leopolvo" }, { name: "robots", content: "noindex" }],
   }),

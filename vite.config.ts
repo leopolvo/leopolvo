@@ -19,7 +19,6 @@ export default defineConfig({
       { path: "/viajes" },
       { path: "/videos" },
       { path: "/vistas-360" },
-      { path: "/contacto" },
       ...tripSlugs.map((s) => ({ path: `/viajes/${s}` })),
     ],
     prerender: { enabled: true, autoStaticPathsDiscovery: false },

@@ -10,7 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as VideosRouteImport } from './routes/videos'
 import { Route as Vistas360RouteImport } from './routes/vistas-360'
 import { Route as ViajesIndexRouteImport } from './routes/viajes.index'
@@ -19,11 +18,6 @@ import { Route as ViajesSlugRouteImport } from './routes/viajes.$slug'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactoRoute = ContactoRouteImport.update({
-  id: '/contacto',
-  path: '/contacto',
   getParentRoute: () => rootRouteImport,
 } as any)
 const VideosRoute = VideosRouteImport.update({
@@ -49,7 +43,6 @@ const ViajesSlugRoute = ViajesSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/contacto': typeof ContactoRoute
   '/videos': typeof VideosRoute
   '/vistas-360': typeof Vistas360Route
   '/viajes/$slug': typeof ViajesSlugRoute
@@ -57,7 +50,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/contacto': typeof ContactoRoute
   '/videos': typeof VideosRoute
   '/vistas-360': typeof Vistas360Route
   '/viajes/$slug': typeof ViajesSlugRoute
@@ -66,7 +58,6 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/contacto': typeof ContactoRoute
   '/videos': typeof VideosRoute
   '/vistas-360': typeof Vistas360Route
   '/viajes/$slug': typeof ViajesSlugRoute
@@ -74,24 +65,15 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    '/' | '/contacto' | '/videos' | '/vistas-360' | '/viajes/$slug' | '/viajes/'
+  fullPaths: '/' | '/videos' | '/vistas-360' | '/viajes/$slug' | '/viajes/'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    '/' | '/contacto' | '/videos' | '/vistas-360' | '/viajes/$slug' | '/viajes'
+  to: '/' | '/videos' | '/vistas-360' | '/viajes/$slug' | '/viajes'
   id:
-    | '__root__'
-    | '/'
-    | '/contacto'
-    | '/videos'
-    | '/vistas-360'
-    | '/viajes/$slug'
-    | '/viajes/'
+    '__root__' | '/' | '/videos' | '/vistas-360' | '/viajes/$slug' | '/viajes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ContactoRoute: typeof ContactoRoute
   VideosRoute: typeof VideosRoute
   Vistas360Route: typeof Vistas360Route
   ViajesSlugRoute: typeof ViajesSlugRoute
@@ -105,13 +87,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contacto': {
-      id: '/contacto'
-      path: '/contacto'
-      fullPath: '/contacto'
-      preLoaderRoute: typeof ContactoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/videos': {
@@ -147,7 +122,6 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ContactoRoute: ContactoRoute,
   VideosRoute: VideosRoute,
   Vistas360Route: Vistas360Route,
   ViajesSlugRoute: ViajesSlugRoute,

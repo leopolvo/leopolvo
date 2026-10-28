@@ -7,7 +7,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "leopolvo · Viajes, fotos y vídeos" },
-      { name: "description", content: "La web de una pareja enamorada de los viajes: álbumes de fotos, vídeos y vistas 360." },
+      { name: "description", content: "Álbumes de fotos, vídeos de viajes y vistas 360 de leopolvo." },
       { property: "og:title", content: "leopolvo · Viajes, fotos y vídeos" },
       { property: "og:description", content: "Álbumes de viajes por Filipinas, Tailandia, Patagonia, Costa Rica y más." },
       { property: "og:type", content: "website" },
@@ -19,14 +19,14 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   return (
-    <SiteLayout showNav={false}>
+    <SiteLayout>
       <section className="relative flex min-h-screen items-end overflow-hidden">
         <img src="/media/hero.webp" alt="Atardecer en una playa de Tailandia" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-hero-fade" />
         <div className="relative mx-auto w-full max-w-6xl px-5 pb-20">
           <p className="eyebrow">Bienvenidos / as</p>
           <h1 className="mt-4 max-w-3xl text-5xl leading-[1.05] text-sand sm:text-7xl">
-            Una pareja enamorada <em className="text-primary">de los viajes</em>.
+            leopolvo
           </h1>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
             Fotos, vídeos y rincones del mundo que hemos ido recorriendo, poco a poco.

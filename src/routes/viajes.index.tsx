@@ -9,6 +9,8 @@ export const Route = createFileRoute("/viajes/")({
       { name: "description", content: "Álbumes de fotos de nuestros viajes por Asia, América y Europa." },
       { property: "og:title", content: "Viajes · leopolvo" },
       { property: "og:description", content: "Álbumes de fotos de nuestros viajes por Asia, América y Europa." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Trips,

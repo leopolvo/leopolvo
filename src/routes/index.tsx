@@ -25,8 +25,8 @@ function Home() {
         <div className="absolute inset-0 bg-hero-fade" />
         <div className="relative mx-auto w-full max-w-6xl px-5 pb-20">
           <p className="eyebrow">Bienvenidos / as</p>
-          <h1 className="mt-4 max-w-3xl text-5xl leading-[1.05] text-sand sm:text-7xl">
-            leopolvo
+          <h1 className="mt-4 max-w-3xl text-2xl leading-[1.05] text-sand sm:text-3xl">
+            Solo viajes
           </h1>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
             Fotos, vídeos y rincones del mundo que hemos ido recorriendo, poco a poco.

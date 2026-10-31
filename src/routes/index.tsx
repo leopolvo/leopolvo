@@ -20,21 +20,27 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <SiteLayout>
-      <section className="relative flex min-h-screen items-end overflow-hidden">
-        <img src="/media/hero.webp" alt="Atardecer en una playa de Tailandia" className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-hero-fade" />
-        <div className="relative mx-auto w-full max-w-6xl px-5 pb-20">
-          <p className="eyebrow">Bienvenidos / as</p>
-          <h1 className="mt-4 max-w-3xl text-2xl leading-[1.05] text-sand sm:text-3xl">
-            Solo viajes
-          </h1>
-          <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-            Fotos, vídeos y rincones del mundo que hemos ido recorriendo, poco a poco.
-          </p>
+      <section className="mx-auto w-full max-w-6xl px-5 pt-32 pb-8 text-center">
+        <p className="eyebrow">Bienvenidos / as</p>
+        <h1 className="mt-4 text-2xl leading-[1.05] text-sand sm:text-3xl">
+          Solo viajes
+        </h1>
+        <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
+          Fotos, vídeos y rincones del mundo que hemos ido recorriendo, poco a poco.
+        </p>
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl px-5">
+        <div className="overflow-hidden rounded-xl border border-border/60">
+          <img
+            src="/media/hero.webp"
+            alt="Atardecer en una playa de Tailandia"
+            className="h-[58vh] min-h-[320px] w-full object-cover"
+          />
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-6xl gap-5 px-5 pb-24 sm:grid-cols-3">
+      <section className="mx-auto grid max-w-6xl gap-5 px-5 pt-6 pb-24 sm:grid-cols-3">
         {[
           { to: "/viajes", icon: Camera, title: "Viajes", text: `${trips.length} álbumes de fotos` },
           { to: "/videos", icon: Film, title: "Vídeos de viajes", text: "Recuerdos de nuestros viajes" },

@@ -20,23 +20,23 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <SiteLayout>
-      <section className="mx-auto w-full max-w-6xl px-5 pt-32 pb-8 text-center">
-        <p className="eyebrow">Bienvenidos / as</p>
-        <h1 className="mt-4 text-2xl leading-[1.05] text-sand sm:text-3xl">
-          Solo viajes
-        </h1>
-        <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
-          Fotos, vídeos y rincones del mundo que hemos ido recorriendo, poco a poco.
-        </p>
-      </section>
-
-      <section className="mx-auto w-full max-w-6xl px-5">
-        <div className="overflow-hidden rounded-xl border border-border/60">
+      <section className="mx-auto w-full max-w-6xl px-5 pt-24">
+        <div className="relative overflow-hidden rounded-xl border border-border/60">
           <img
             src="/media/hero.webp"
             alt="Atardecer en una playa de Tailandia"
-            className="h-[58vh] min-h-[320px] w-full object-cover"
+            className="h-[70vh] min-h-[420px] w-full object-cover"
           />
+          <div className="bg-hero-fade-top absolute inset-0" />
+          <div className="absolute inset-x-0 top-0 px-6 pt-8 sm:px-10 sm:pt-12">
+            <p className="eyebrow">Bienvenidos / as</p>
+            <h1 className="mt-3 text-2xl leading-[1.05] text-sand sm:text-3xl">
+              Solo viajes
+            </h1>
+            <p className="mt-4 max-w-xl text-lg text-sand/85">
+              Fotos, vídeos y rincones del mundo que hemos ido recorriendo, poco a poco.
+            </p>
+          </div>
         </div>
       </section>
 
